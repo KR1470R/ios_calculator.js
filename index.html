@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Calculator</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="utf-8">
+	</head>
+	<body>
+		<style>
+
+			@font-face{
+				font-family:'Myriad';
+				src:url('myriad.otf');
+			}
+			body{
+				background-color: #121212;
+				overflow: hidden;
+			}
+			.grid-container{
+				text-align: center;
+				display: grid;
+				grid-template-columns: auto auto auto auto;
+				background-color: #121212;
+				margin-top:4em;
+				margin-left: -5px;
+			}
+			.grid-item{
+				background-color: rgb(51,51,51);
+				border:5px solid #121212;
+				padding:23px;
+				height: 100%;
+				width: 100%;
+				font-size: 35px;
+				border-radius: 100%;
+				color: white;
+				font-family: 'Myriad';
+				-webkit-user-select: none;
+			 	-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				outline: none;
+			}
+			.get-text{
+				width: 100%;
+				height: 1em;
+				background-color:#121212;
+				border:3px solid #121212;
+				color: white;
+				font-size: 120px;
+				text-align: right;
+				font-family: 'Myriad';
+				overflow: auto;
+				pointer-events: none;
+			}
+			.grid-item:active{
+				background-color: #727073;
+				background-image: none;
+			}
+			#gray_buttons{
+				background-color: #909090;
+				color:black;
+				background-image: none;
+			}
+			#orange_buttons{
+				background-color: #FE9E0A;
+				background-image: none;
+			}
+			#orange_buttons:active{
+				background-color: #F5C697;
+				background-image: none;
+			}
+		</style>
+		<form name='form'>
+			<input id='input' class="get-text" name='textview'>
+		</form>
+		<center>
+			<table class="grid-container">
+				<tr>
+					<td><button id='gray_buttons' class="grid-item" onclick="clearAll()">AC</button></td>
+					<td><button id='gray_buttons' class="grid-item" onclick="">+/-</button></td>
+					<td><button id='gray_buttons' class="grid-item" onclick="insert('%')">%</button></td>
+					<td><button id='orange_buttons' class="grid-item" id='orange_elem' onclick="insert('/')">÷</button></td>
+				</tr>
+
+				<tr>
+					<td><button class="grid-item"  onclick="insert(7)">7</button></td>
+					<td><button class="grid-item"  onclick='insert(8)'>8</button></td>
+					<td><button class="grid-item" onclick="insert(9)">9</button></td>
+					<td><button id='orange_buttons' class="grid-item" onclick="insert('*')">x</button></td>
+				</tr>
+
+				<tr>
+					<td><button class="grid-item" onclick='insert(4)'>4</button></td>
+					<td><button class="grid-item" onclick='insert(5)'>5</button></td>
+					<td><button class="grid-item" onclick='insert(6)'>6</button></td>
+					<td><button id='orange_buttons' class="grid-item" onclick="insert('-')">-</button></td>
+				</tr>
+
+				<tr>
+					<td><button class="grid-item" onclick="insert(1)">1</button></td>
+					<td><button class="grid-item" onclick='insert(2)'>2</button></td>
+					<td><button class="grid-item" onclick='insert(3)'>3</button></td>
+					<td><button id='orange_buttons' class="grid-item" onclick="insert('+')">+</button></td>
+				</tr>
+
+				<tr>
+					<td colspan="2.3"><button style="width:100%;border-radius:50px;text-align:left;" class="grid-item" onclick='insert(0)'>0</button></td>
+					<td><button style='width:98px;' class="grid-item" onclick="insert('.')">,</button></td>
+					<td><button style="width:96px;" id="orange_buttons" class="grid-item" onclick="equ()">=</button></td>
+				</tr>
+			</table>
+		</center>
+
+	</body>
+	<script type="text/javascript">
+
+		// Clear
+		function clearAll(){
+			document.form.textview.value = '';
+		};
+		// Add Numbers
+		function insert(num){
+			document.form.textview.value = document.form.textview.value + num;
+		};
+
+		function equ(){
+			var exp = document.form.textview.value;
+			try{
+				if(exp){
+					document.form.textview.value = eval(exp);
+				};
+			}catch{clearAll()}
+
+		};
+
+	</script>
+</html>
